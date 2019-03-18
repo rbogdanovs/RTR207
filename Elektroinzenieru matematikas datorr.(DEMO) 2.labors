@@ -1,0 +1,47 @@
+
+%% Izteiksmju vienkāršošana
+syms x
+y = (x-1)*(x-2)/((x-3)^2*(x-4));
+z = diff(y,x)
+% vienkāršosim atbildi
+z2=simplify(z)
+%% citas vienkāršojuma funkcijas
+z = (x-1)*(x-2);
+z1=expand(z)
+factor(z1)
+%% kā attēlot simbolisko funkcijas
+pretty(y)
+% kā attēlot simbolisko funkciju
+yltx = latex(y);
+h = text(0.5,0.5,['$',yltx,'$']);
+set(h,'Interpreter','Latex')
+%% kā uzzīmēt grafiku no simboliskās funkcijas
+ezplot(y)
+%% kā uzzīmēt grafiku no simboliskās funkcijas
+% (priekš laboratorijas darbā)
+% 1.dots y = (x-1)/(x-2); ir jāatrod
+% tās atvasinājums, un jāuzzīmē to
+% dotājā intervālā
+% 2. meklāsim atvasinājumu
+syms x
+y = (x-1)/(x-2);
+yd = diff(y,x)
+% 3. nodefinēsim intervālu kurā uzzīmēsim
+% mūsu funkciju
+x = -2:0.01:4;
+% 4. veiksim izteiksmes vektorizāciju
+% (ieliksim punktiņus pirms * / ~)
+yv = vectorize(y)
+ydv = vectorize(yd)
+% 5. x vietā likšū 3. solī defīnētu vektoru
+% interpretēsim izteksimes
+yn = eval(yv)
+ydn = eval(ydv)
+% 6. uzzīmēsim grafiku ar funkciju plot
+plot(x,yn,x,ydn)
+ylim([-10 10])
+% 7. grafika anotācija
+yltx = latex(y);
+yltxd = latex(yd);
+h=legend(['$',yltx,'$'],['$',yltxd,'$'])
+set(h, 'Interpreter','Latex')
