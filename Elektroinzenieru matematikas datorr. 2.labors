@@ -1,0 +1,188 @@
+%%  Vienadojumu risinasana
+syms x a b
+% Atrisinasim kvardatvienadojumu: 
+% x+a*sqrt(x), (saknes ir a^2 un 0)
+solve(x+a*sqrt(x)==0, x) % otrais arguments
+
+%%  Kā uzzimet grafiku no simboliskas funkcijas
+% 1.dots y = ((x^3)+(4*x^2)+(10*x)+6)/((3*x+4)*(x^3 + 4)); 
+% Ir jaatrod tas atvasinajums, un jauzzime to dotaja intervala
+
+%%  2. Meklesim atvasinajumu
+syms x
+y = ((x^3)+(4*x^2)+(10*x)+6)/((3*x+4)*(x^3 + 4));
+yd = diff(y,x)
+
+%%  3. Nodefinesim intervalu, kura uzzimesim musu funkciju
+x = -2:0.01:-1;
+
+%%  4. Veiksim izteiksmes vektorizaciju
+yv = vectorize(y)
+ydv = vectorize(yd)
+
+%%  5.  x vieta liksu 3. solii definetu vektoru
+% interpretēsim izteksimes
+yn = eval(yv)
+ydn = eval(ydv)
+
+%%  6.  Uzzimesim grafiku ar funkciju plot
+plot(x,yn,x,ydn)
+ylim([-10 10])
+
+%%  7.  Grafika anotacija
+yltx = latex(y);
+yltxd = latex(yd);
+h=legend(['$',yltx,'$'],['$',yltxd,'$'])
+set(h, 'Interpreter','Latex')
+
+%%  Secinajumi:
+% Iemacijos pielietot matlabu vienadojumu risinasanai.
+% Ka ari atvasinat, veikt vektorizaciju un definet vektoru.
+% Uzzimet grafiku no simboliskas funkcijas.
+
+---------------------------------------------------------------------------
+>> 
+>> 
+>> diff
+ 
+ans =
+ 
+   0
+ a^2
+ 
+ 
+yd =
+ 
+(3*x^2 + 8*x + 10)/((3*x + 4)*(x^3 + 4)) - (3*(x^3 + 4*x^2 + 10*x + 6))/((3*x + 4)^2*(x^3 + 4)) - (3*x^2*(x^3 + 4*x^2 + 10*x + 6))/((3*x + 4)*(x^3 + 4)^2)
+ 
+
+yv =
+
+    '(10.*x + 4.*x.^2 + x.^3 + 6)./((3.*x + 4).*(x.^3 + 4))'
+
+
+ydv =
+
+    '(8.*x + 3.*x.^2 + 10)./((3.*x + 4).*(x.^3 + 4)) - (3.*(10.*x + 4.*x.^2 + x.^3 + 6))./((3.*x + 4).^2.*(x.^3 + 4)) - (3.*x.^2.*(10.*x + 4.*x.^2 + x.^3 + 6))./((3.*x + 4).*(x.^3 + 4).^2)'
+
+
+yn =
+
+  Columns 1 through 11
+
+   -0.7500   -0.7770   -0.8057   -0.8361   -0.8685   -0.9030   -0.9398   -0.9792   -1.0213   -1.0664   -1.1150
+
+  Columns 12 through 22
+
+   -1.1672   -1.2236   -1.2846   -1.3508   -1.4227   -1.5011   -1.5869   -1.6811   -1.7848   -1.8996   -2.0270
+
+  Columns 23 through 33
+
+   -2.1691   -2.3286   -2.5084   -2.7126   -2.9461   -3.2152   -3.5283   -3.8964   -4.3344   -4.8632   -5.5128
+
+  Columns 34 through 44
+
+   -6.3277   -7.3771   -8.7742  -10.7191  -13.5993  -18.2786  -27.1506  -50.2083 -251.2586   91.2107   40.1651
+
+  Columns 45 through 55
+
+   26.4526   20.1351   16.5395   14.2503   12.6934   11.5926   10.8000   10.2303    9.8324    9.5755    9.4423
+
+  Columns 56 through 66
+
+    9.4258    9.5277    9.7590   10.1429   10.7202   11.5605   12.7871   14.6325   17.5866   22.8779   34.6886
+
+  Columns 67 through 77
+
+   82.3047 -156.4341  -37.2106  -20.2529  -13.5164   -9.9211   -7.6975   -6.1940   -5.1145   -4.3053   -3.6787
+
+  Columns 78 through 88
+
+   -3.1808   -2.7770   -2.4440   -2.1655   -1.9297   -1.7279   -1.5538   -1.4022   -1.2694   -1.1523   -1.0484
+
+  Columns 89 through 99
+
+   -0.9557   -0.8727   -0.7981   -0.7306   -0.6694   -0.6137   -0.5629   -0.5164   -0.4737   -0.4344   -0.3981
+
+  Columns 100 through 101
+
+   -0.3645   -0.3333
+
+
+ydn =
+
+   1.0e+04 *
+
+  Columns 1 through 11
+
+   -0.0003   -0.0003   -0.0003   -0.0003   -0.0003   -0.0004   -0.0004   -0.0004   -0.0004   -0.0005   -0.0005
+
+  Columns 12 through 22
+
+   -0.0005   -0.0006   -0.0006   -0.0007   -0.0008   -0.0008   -0.0009   -0.0010   -0.0011   -0.0012   -0.0013
+
+  Columns 23 through 33
+
+   -0.0015   -0.0017   -0.0019   -0.0022   -0.0025   -0.0029   -0.0034   -0.0040   -0.0048   -0.0058   -0.0072
+
+  Columns 34 through 44
+
+   -0.0092   -0.0120   -0.0163   -0.0232   -0.0357   -0.0613   -0.1283   -0.4141   -9.7493   -1.2014   -0.2165
+
+  Columns 45 through 55
+
+   -0.0867   -0.0459   -0.0281   -0.0186   -0.0130   -0.0093   -0.0067   -0.0048   -0.0032   -0.0019   -0.0007
+
+  Columns 56 through 66
+
+    0.0004    0.0016    0.0030    0.0047    0.0069    0.0101    0.0148    0.0228    0.0381    0.0733    0.1898
+
+  Columns 67 through 77
+
+    1.1921    4.7717    0.2974    0.0966    0.0469    0.0275    0.0180    0.0126    0.0093    0.0071    0.0056
+
+  Columns 78 through 88
+
+    0.0045    0.0037    0.0030    0.0026    0.0022    0.0019    0.0016    0.0014    0.0012    0.0011    0.0010
+
+  Columns 89 through 99
+
+    0.0009    0.0008    0.0007    0.0006    0.0006    0.0005    0.0005    0.0004    0.0004    0.0004    0.0003
+
+  Columns 100 through 101
+
+    0.0003    0.0003
+
+
+h = 
+
+Warning: Error updating Legend.
+
+ String scalar or character vector must have valid interpreter syntax:
+$\frac{x^3+4\,x^2+10\,x+6}{\left(3\,x+4\right)\,\left(x^3+4\right)}$
+ 
+> In defaulterrorcallback (line 12)
+  In matlab.graphics.illustration.Legend/get.String
+  In matlab.graphics.illustration.Legend/getDescriptiveLabelForDisplay
+  In diff (line 28) 
+Warning: Error updating Legend.
+
+ String scalar or character vector must have valid interpreter syntax:
+$\frac{3\,x^2+8\,x+10}{\left(3\,x+4\right)\,\left(x^3+4\right)}-\frac{3\,\left(x^3+4\,x^2+10\,x+6\right)}{{\left(3\,x+4\right)}^2\,\left(x^3+4\right)}-\frac{3\,x^2\,\left(x^3+4\,x^2+10\,x+6\right)}{\left(3\,x+4\right)\,{\left(x^3+4\right)}^2}$ 
+> In defaulterrorcallback (line 12)
+  In matlab.graphics.illustration.Legend/get.String
+  In matlab.graphics.illustration.Legend/getDescriptiveLabelForDisplay
+  In diff (line 28) 
+  Legend ($\frac{x^3+4\,x^2+10\,x+6}{\left(3\,x+4\right)\,\left(x^3+4\right)}$, $\frac{3\,x^2…) with properties:
+
+         String: {1×2 cell}
+       Location: 'northeast'
+    Orientation: 'vertical'
+       FontSize: 9
+       Position: [-1.8583 0.8187 2.7446 0.0821]
+          Units: 'normalized'
+
+  Show all properties
+
+Warning: Function diff has the same name as a MATLAB builtin. We suggest you rename the function to avoid a
+potential name conflict. 
