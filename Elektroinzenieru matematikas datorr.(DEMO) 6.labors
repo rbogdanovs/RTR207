@@ -1,0 +1,654 @@
+%% 6.Laboratorijas darbs
+%% Videjas un efektivas vertibas noteiksana
+%% Videjas vertibas noteiksana
+t = 0:0.01:4;
+N = length(t);
+xv3a=1/(N-1)*(sum(sig(t(1:end-1))))
+xv3b=1/(N-1)*(sum(sig(t(2:end))))
+
+h = (t(end)-t(1))/(N-1);
+xv3c=1/(N-1)*(sum(sig(t(1:end)+h/2)))
+xv4=1/(N-1)*(((sig(t(1))+sig(t(end)))/2)+(sum(sig(t(2:end-1)))))
+% Videjas vertibas meklesana 
+% izmantojot matlaba iebuveto skaitlisko integresanu
+
+xvquad=1/(t(end)-t(1))*...
+    quad(@sig,t(1),t(end))
+% quad(rokturis_uz_funkciju,tsak,tbeig)
+%% Ka veikt aprekinus pie dazadam precizitatem, 
+% un ka noformet rezultatus tabulas veida.
+% 1.ar 3a,3b,3c,4 formulam
+% Sajas formulas precizitate ir atkariga
+% no taisnstura platuma (kas ir vienads ar laika soli)
+dt = [0.5 0.1 0.05];
+for dtc=dt
+    
+    t=0:dtc:4;
+    N = length(t);
+    xv3a=1/(N-1)*(sum(sig(t(1:end-1))));
+    fprintf('|dt=%0.2f\t|vv=%f\t|\n',dtc,xv3a);
+end
+%% Ka noformet tabulas veida ar quad
+% quad funkcijai var noradit precizitati ar 
+% kuru ta rekinas sintaksi
+% quad(rokturis,tsak,tend,precizitate)
+tol = [1e-1 1e-2 1e-3];
+for tolc = tol
+    xvquad=1/(t(end)-t(1))*...
+    quad(@sig,t(1),t(end),tolc);
+fprintf('|tol=%0.2f\t|vv=%f\t|\n',tolc,xvquad);
+end
+
+
+
+sig.m
+
+function y = sig(t)
+t1f = (t>=0)&(t<2);
+t2f = (t>=2)&(t<=4);
+t1 = t(t1f);
+t2 = t(t2f);
+y1 = 3+t1*0;
+y1 = 3+zeros(size(t1));
+y1 = 3*ones(size(t1));
+T = 2; y2 = 3*sin(2*pi*(1/T)*t2);
+y = [y1,y2];
+
+
+
+
+Diary
+
+
+	Classroom License -- for classroom instructional use only.
+
+>> edit
+ 
+>> t = 0:0.01:4;
+>> y = sig(t); plot(t,y)
+
+y1 =
+
+  Columns 1 through 15
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 16 through 30
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 31 through 45
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 46 through 60
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 61 through 75
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 76 through 90
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 91 through 105
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 106 through 120
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 121 through 135
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 136 through 150
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 151 through 165
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 166 through 180
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 181 through 195
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 196 through 200
+
+     3     3     3     3     3
+ 
+>> t = 0:0.01:4;
+
+ 
+>> t = 0:0.01:4;
+>> y = sig(t); plot(t,y)
+
+y1 =
+
+  Columns 1 through 15
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 16 through 30
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 31 through 45
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 46 through 60
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 61 through 75
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 76 through 90
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 91 through 105
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 106 through 120
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 121 through 135
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 136 through 150
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 151 through 165
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 166 through 180
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 181 through 195
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 196 through 200
+
+     3     3     3     3     3
+ 
+>> y = sig(t); plot(t,y)
+
+y1 =
+
+  Columns 1 through 15
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 16 through 30
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 31 through 45
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 46 through 60
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 61 through 75
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 76 through 90
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 91 through 105
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 106 through 120
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 121 through 135
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 136 through 150
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 151 through 165
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 166 through 180
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 181 through 195
+
+     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+
+  Columns 196 through 200
+
+     3     3     3     3     3
+
+>> y = sig(t); plot(t,y)
+>> edit lab6_demo.m
+>> size(t)
+
+ans =
+
+     1   401
+
+>> length(t)
+
+ans =
+
+   401
+
+>> sum([1 10 50])
+
+ans =
+
+    61
+
+>> t = 0:1:4;
+>> lab6_demo
+
+xv3a =
+
+    1.5000
+
+>> lab6_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+xv3c =
+
+    1.5075
+
+>> lab6_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+ 
+>> lab6_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv3d =
+
+  597.6667
+
+>> lab6_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv3d =
+
+  597.0037
+ 
+>> lab6_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv3d =
+
+    1.4962
+
+>> lab6_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+ 
+>> lab6_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+>> lab6_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+|dt=5.000000e-01	|vv=1.500000e+00	|
+|dt=1.000000e-01	|vv=1.500000e+00	|
+|dt=5.000000e-02	|vv=1.500000e+00	|
+>> lab6_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+|dt=5.00e-01	|vv=1.500000e+00	|
+|dt=1.00e-01	|vv=1.500000e+00	|
+|dt=5.00e-02	|vv=1.500000e+00	|
+>> lab6_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+|dt=5e-01	|vv=1.500000e+00	|
+|dt=1e-01	|vv=1.500000e+00	|
+|dt=5e-02	|vv=1.500000e+00	|
+>> lab6_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+|dt=0.500000	|vv=1.500000e+00	|
+|dt=0.100000	|vv=1.500000e+00	|
+|dt=0.050000	|vv=1.500000e+00	|
+>> lab6_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+|dt=0.5	|vv=1.500000e+00	|
+|dt=0.1	|vv=1.500000e+00	|
+|dt=0.05	|vv=1.500000e+00	|
+>> lab6_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+|dt=0.50	|vv=1.500000e+00	|
+|dt=0.10	|vv=1.500000e+00	|
+|dt=0.05	|vv=1.500000e+00	|
+>> lab6_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+|dt=0.50	|vv=1.500000	|
+|dt=0.10	|vv=1.500000	|
+|dt=0.05	|vv=1.500000	|
+>> lab6_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+|dt=0.50	|vv=1.500000	|
+|dt=0.10	|vv=1.500000	|
+|dt=0.05	|vv=1.500000	|
+|tol=0.10	|vv=1.447114	|
+|tol=0.01	|vv=1.473763	|
+|tol=0.00	|vv=1.496673	|
