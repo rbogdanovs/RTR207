@@ -1,0 +1,268 @@
+%% 6.Laboratorijas darbs
+%% Videjas un efektivas vertibas noteiksana
+%% Videjas vertibas noteiksana
+t = 0:0.01:4;
+N = length(t);
+xv3a=1/(N-1)*(sum(sig(t(1:end-1))))
+xv3b=1/(N-1)*(sum(sig(t(2:end))))
+
+h = (t(end)-t(1))/(N-1);
+xv3c=1/(N-1)*(sum(sig(t(1:end)+h/2)))
+xv4=1/(N-1)*(((sig(t(1))+sig(t(end)))/2)+(sum(sig(t(2:end-1)))))
+% Videjas vertibas meklesana 
+% izmantojot matlaba iebuveto skaitlisko integresanu
+
+xvquad=1/(t(end)-t(1))*...
+    quad(@sig,t(1),t(end))
+% quad(rokturis_uz_funkciju,tsak,tbeig)
+%% Ka veikt aprekinus pie dazadam precizitatem, 
+% un ka noformet rezultatus tabulas veida.
+% 1.ar 3a,3b,3c,4 formulam
+% Sajas formulas precizitate ir atkariga
+% no taisnstura platuma (kas ir vienads ar laika soli)
+dt = [0.5 0.1 0.05];
+for dtc=dt
+    
+    t=0:dtc:4;
+    N = length(t);
+    xv3a=1/(N-1)*(sum(sig(t(1:end-1))));
+    fprintf('|dt=%0.2f\t|vv=%f\t|\n',dtc,xv3a);
+end
+%% Ka noformet tabulas veida ar quad
+% quad funkcijai var noradit precizitati ar 
+% kuru ta rekinas sintaksi
+% quad(rokturis,tsak,tend,precizitate)
+tol = [1e-1 1e-2 1e-3];
+for tolc = tol
+    xvquad=1/(t(end)-t(1))*...
+    quad(@sig,t(1),t(end),tolc);
+fprintf('|tol=%0.2f\t|vv=%f\t|\n',tolc,xvquad);
+end
+%% Ka atrast isto videjo vertibu
+% Lai atrastu isto videjo vertibu, mes izmantosim
+% simboliskas integresanas funkciju int
+% signalu mes nemsim no 3.labora draba
+% troksna signala vieta nemsim "0" 
+% 3.lab darba signals janem pa posmiem
+% katru posmu (y un konstantes) ar copy-paste
+% mes iekopesim ieksa, tad pirms posma definesim
+% t (t_sin,, t_zero, t1, ...) ka simbolisko mainigo
+% Tad ar int aprekinasim integrali
+
+syms t1
+%y1 = 3+t1*0;
+y1 = 3/2*t1;
+int1 = int(y1,t1,0,2);
+
+syms t2
+y2 = 3*cos(2*pi*2*t2);
+int2 = int(y2,t2,2,4);
+
+istaa_vv = 1/(4-0)*(int1+int2)
+
+%% Ka rekinat efektivo vertibu
+% 1.Patiesa efektiva vertiba
+int1 = int(y1^2,t1,0,2);
+int2 = int(y2^2,t2,2,4);
+istaa_ef_v = sqrt(1/(4-0)*(int1+int2))
+istaa_ef_v = double(istaa_ef_v)
+
+%% Ka rekinat efektivo vertibu(2)
+% Kas kapina to kvadrata (tas bus rokturis uz anonimo funkciju)
+sigkv = @(t) sig(t).^2;
+t = 0:0.01:4;
+% Lai signals butu kvadrata izveidots funkciju
+% efektiva vertiba ar 3a formulu
+t = 0:0.01:4;
+N = length(t);
+xef3a = sqrt(1/(N-1)*(sum(sigkv(t(1:end-1)))))
+
+
+% Efektiva vertiba integrejot ar quad
+xefvquad=sqrt(1/(t(end)-t(1))*...
+     quad(sigkv,t(1),t(end)))
+
+
+
+
+
+
+
+
+sig.m
+
+function y = sig(t)
+t1f = (t>=0)&(t<2);
+t2f = (t>=2)&(t<=4);
+t1 = t(t1f);
+t2 = t(t2f);
+y1 = 3+t1*0;
+y1 = 3+zeros(size(t1));
+y1 = 3*ones(size(t1));
+T = 2; 
+y2 = 3*sin(2*pi*(1/T)*t2);
+y = [y1,y2];
+
+
+
+
+
+
+
+
+Diary
+ 
+>> lab_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+|dt=0.50	|vv=1.500000	|
+|dt=0.10	|vv=1.500000	|
+|dt=0.05	|vv=1.500000	|
+|tol=0.10	|vv=1.447114	|
+|tol=0.01	|vv=1.473763	|
+|tol=0.00	|vv=1.496673	|
+ 
+istaa_vv =
+ 
+3/4
+ 
+>> lab_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+|dt=0.50	|vv=1.500000	|
+|dt=0.10	|vv=1.500000	|
+|dt=0.05	|vv=1.500000	|
+|tol=0.10	|vv=1.447114	|
+|tol=0.01	|vv=1.473763	|
+|tol=0.00	|vv=1.496673	|
+ 
+istaa_vv =
+ 
+3/4
+ 
+ 
+istaa_vv =
+ 
+15^(1/2)/2
+ 
+istaa_ef_v =
+ 
+15^(1/2)/2
+ 
+
+istaa_ef_v =
+
+    1.9365
+
+
+xef3a =
+
+    2.5981
+
+
+ 
+>> lab_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+|dt=0.50	|vv=1.500000	|
+|dt=0.10	|vv=1.500000	|
+|dt=0.05	|vv=1.500000	|
+|tol=0.10	|vv=1.447114	|
+|tol=0.01	|vv=1.473763	|
+|tol=0.00	|vv=1.496673	|
+ 
+istaa_vv =
+ 
+3/4
+ 
+ 
+istaa_ef_v =
+ 
+15^(1/2)/2
+ 
+
+istaa_ef_v =
+
+    1.9365
+
+
+xef3a =
+
+    2.5981
+
+
+xefvquad =
+
+    2.5981
+
+>> simulink
+
