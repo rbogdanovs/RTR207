@@ -50,12 +50,14 @@ end
 % Tad ar int aprekinasim integrali
 
 syms t1
-%y1 = 3+t1*0;
-y1 = 3/2*t1;
+%y1 = 3/2*t1;
+y1 = 3+t1*0;
 int1 = int(y1,t1,0,2);
 
 syms t2
-y2 = 3*cos(2*pi*2*t2);
+T = 2;
+%y2 = 3*cos(2*pi*2*t2);
+y2 = 3*sin(2*pi*(1/T)*t2);
 int2 = int(y2,t2,2,4);
 
 istaa_vv = 1/(4-0)*(int1+int2)
@@ -81,6 +83,8 @@ xef3a = sqrt(1/(N-1)*(sum(sigkv(t(1:end-1)))))
 % Efektiva vertiba integrejot ar quad
 xefvquad=sqrt(1/(t(end)-t(1))*...
      quad(sigkv,t(1),t(end)))
+
+
 
 
 
@@ -265,4 +269,394 @@ xefvquad =
     2.5981
 
 >> simulink
+
+
+	Classroom License -- for classroom instructional use only.
+
+>> lab_demo
+Error: File: lab_demo.m Line: 54 Column: 13
+Invalid expression. Check for missing or extra characters.
+ 
+>> lab_demo
+Error: File: lab_demo.m Line: 54 Column: 13
+Invalid expression. Check for missing or extra characters.
+ 
+>> lab_demo
+Error: File: lab_demo.m Line: 54 Column: 13
+Invalid expression. Check for missing or extra characters.
+ 
+>> lab_demo
+Error: File: lab_demo.m Line: 55 Column: 23
+Invalid expression. Check for missing or extra characters.
+ 
+>> lab_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+|dt=0.50	|vv=1.500000	|
+|dt=0.10	|vv=1.500000	|
+|dt=0.05	|vv=1.500000	|
+|tol=0.10	|vv=1.447114	|
+|tol=0.01	|vv=1.473763	|
+|tol=0.00	|vv=1.496673	|
+ 
+istaa_vv =
+ 
+3/4
+ 
+>> lab_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+|dt=0.50	|vv=1.500000	|
+|dt=0.10	|vv=1.500000	|
+|dt=0.05	|vv=1.500000	|
+|tol=0.10	|vv=1.447114	|
+|tol=0.01	|vv=1.473763	|
+|tol=0.00	|vv=1.496673	|
+ 
+istaa_vv =
+ 
+3/4
+ 
+ 
+istaa_vv =
+ 
+15^(1/2)/2
+ 
+>> lab_demo
+Error: File: lab_demo.m Line: 67 Column: 40
+Invalid expression. Check for missing or extra characters.
+ 
+>> lab_demo
+Error: File: lab_demo.m Line: 67 Column: 40
+Invalid expression. Check for missing or extra characters.
+ 
+>> lab_demo
+Error: File: lab_demo.m Line: 67 Column: 40
+Invalid expression. Check for missing or extra characters.
+ 
+>> xef31
+Undefined function or variable 'xef31'.
+ 
+>> lab_demo
+Error: File: lab_demo.m Line: 67 Column: 40
+Invalid expression. Check for missing or extra characters.
+ 
+>> lab_demo
+Error: File: lab_demo.m Line: 67 Column: 40
+Invalid expression. Check for missing or extra characters.
+ 
+>> lab_demo
+Error: File: lab_demo.m Line: 67 Column: 40
+Invalid expression. Check for missing or extra characters.
+ 
+>> lab_demo
+Error: File: lab_demo.m Line: 67 Column: 40
+Invalid expression. Check for missing or extra characters.
+ 
+>> lab_demo
+Error: File: lab_demo.m Line: 67 Column: 40
+Invalid expression. Check for missing or extra characters.
+ 
+>> lab_demo
+Error: File: lab_demo.m Line: 67 Column: 40
+Invalid expression. Check for missing or extra characters.
+ 
+>> lab_demo
+Error: File: lab_demo.m Line: 67 Column: 40
+Invalid expression. Check for missing or extra characters.
+ 
+ 
+istaa_ef_v =
+ 
+15^(1/2)/2
+ 
+
+istaa_ef_v =
+
+    1.9365
+
+
+xef3a =
+
+    2.5981
+
+>> lab_demo
+Error: File: lab_demo.m Line: 82 Column: 29
+Invalid expression. When calling a function or indexing a variable, use parentheses.
+Otherwise, check for mismatched delimiters.
+ 
+>> lab_demo
+Error: File: lab_demo.m Line: 82 Column: 28
+Invalid expression. When calling a function or indexing a variable, use parentheses.
+Otherwise, check for mismatched delimiters.
+ 
+>> lab_demo
+Error: File: lab_demo.m Line: 82 Column: 29
+Invalid expression. When calling a function or indexing a variable, use parentheses.
+Otherwise, check for mismatched delimiters.
+ 
+>> lab_demo
+Error: File: lab_demo.m Line: 83 Column: 29
+Invalid expression. When calling a function or indexing a variable, use parentheses.
+Otherwise, check for mismatched delimiters.
+ 
+>> lab_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+|dt=0.50	|vv=1.500000	|
+|dt=0.10	|vv=1.500000	|
+|dt=0.05	|vv=1.500000	|
+|tol=0.10	|vv=1.447114	|
+|tol=0.01	|vv=1.473763	|
+|tol=0.00	|vv=1.496673	|
+ 
+istaa_vv =
+ 
+3/4
+ 
+ 
+istaa_ef_v =
+ 
+15^(1/2)/2
+ 
+
+istaa_ef_v =
+
+    1.9365
+
+
+xef3a =
+
+    2.5981
+
+
+xefvquad =
+
+    2.5981
+
+>> simulink
+>> lab_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+|dt=0.50	|vv=1.500000	|
+|dt=0.10	|vv=1.500000	|
+|dt=0.05	|vv=1.500000	|
+|tol=0.10	|vv=1.447114	|
+|tol=0.01	|vv=1.473763	|
+|tol=0.00	|vv=1.496673	|
+Undefined function or variable 'T'.
+
+Error in lab_demo (line 59)
+y2 = 3*sin(2*pi*(1/T)*t2);
+ 
+>> lab_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+|dt=0.50	|vv=1.500000	|
+|dt=0.10	|vv=1.500000	|
+|dt=0.05	|vv=1.500000	|
+|tol=0.10	|vv=1.447114	|
+|tol=0.01	|vv=1.473763	|
+|tol=0.00	|vv=1.496673	|
+Undefined function or variable 'T'.
+
+Error in lab_demo (line 59)
+y2 = 3*sin(2*pi*(1/T)*t2);
+ 
+>> lab_demo
+
+xv3a =
+
+    1.5000
+
+
+xv3b =
+
+    1.4925
+
+
+xv3c =
+
+    1.5000
+
+
+xv4 =
+
+    1.4962
+
+
+xvquad =
+
+    1.5000
+
+|dt=0.50	|vv=1.500000	|
+|dt=0.10	|vv=1.500000	|
+|dt=0.05	|vv=1.500000	|
+|tol=0.10	|vv=1.447114	|
+|tol=0.01	|vv=1.473763	|
+|tol=0.00	|vv=1.496673	|
+ 
+istaa_vv =
+ 
+3/2
+ 
+ 
+istaa_ef_v =
+ 
+(3*3^(1/2))/2
+ 
+
+istaa_ef_v =
+
+    2.5981
+
+
+xef3a =
+
+    2.5981
+
+
+xefvquad =
+
+    2.5981
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
